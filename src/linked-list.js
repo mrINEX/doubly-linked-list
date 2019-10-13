@@ -3,8 +3,8 @@ const Node = require('./node');
 class LinkedList {
     constructor() {
         this.length = 0;
-        //this._head = null;
-        //this._tail = null;
+        this._head = null;
+        this._tail = null;
     }
 
     append(data) {
@@ -25,6 +25,8 @@ class LinkedList {
         console.log('head: '+this._head.data);
         console.log('tail: '+this._tail.data);
         console.log('length--------------------------> '+this.length);
+        console.log('                        append chaining');
+        return this; //// for chainig !!!
     }
 
     head() {
@@ -56,9 +58,11 @@ class LinkedList {
         let count = 0;
         let current = this._head;
         let node = new Node(data);
-        if(!this._head && index === 0){
+        if(index === 0){
             this._head = node;
             this._tail = node;
+            console.log('                 chaining inseartAt');
+            return this;
         }
         while (current !== null) 
         {
@@ -93,6 +97,8 @@ class LinkedList {
             count++;
         }
         console.log('count: ---'+count);
+        console.log('                        clear chaining');
+        return this; //// for chainig !!!
     }
 
     deleteAt(index) {
@@ -107,12 +113,8 @@ class LinkedList {
             } else {
                 this._head.prev = null;
             }
-            //this._head.prev = null;
-            console.log('prev----: '+current.prev);
-            console.log('--data--: '+current.data);
-            console.log('----next: '+current.next);
-            console.log('head: '+this._head.data);
-            console.log('tail: '+this._tail.data);
+            console.log('                        deleteAt chaining');
+            return this;
         }
         while (current !== null) 
         {
@@ -123,13 +125,14 @@ class LinkedList {
             current = current.next;
             count++;
         }
+        //console.log('                        deleteAt chaining');
+        //return this; //// for chainig !!!
     }
 
     reverse() {
-        console.log('-=-=-=-=++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+       
         let current = this._head;
         let prev = null;
-        
         while(current !== null){
             let next = current.next;
             current.next = prev;
@@ -139,7 +142,8 @@ class LinkedList {
         }
         this._tail = this._head;
         this._head = prev;
-        
+        console.log('                        revers chaining');
+        return this; //// for chainig !!!
     }
 
     indexOf(data) {
